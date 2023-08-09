@@ -16,7 +16,7 @@
 <button onclick="location.href = '/chat/clear';">Clear chat</button>
 
 <script type="text/javascript">
-    var socket = io.connect('https://flasktest-a0uj.onrender.com:5000');
+    var socket = io.connect('https:0.0.0.0:5000');
 
     socket.on('connect', function () {
         console.log('Connected');
