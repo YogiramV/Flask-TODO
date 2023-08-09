@@ -8,7 +8,7 @@ import datetime
 
 
 app = Flask(__name__)
-socketio = SocketIO(app, ping_interval=10, ping_timeout=30)
+socketio = SocketIO(app, ping_interval=10, ping_timeout=30,port=5000)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql://yogi:0N4KhCjULTvHxFap9bi0e20Sls5wxpuy@dpg-cj9j9im3ttrc73d470r0-a/todo_a43z"
