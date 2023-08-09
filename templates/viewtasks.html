@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks Page{% endblock %}
+
+{% block header %}Tasks{% endblock %}
+
+{% block content %}
+<table class="table table-bordered table-dark">
+    <tr>
+        {% if role != "EMPLOYEE" %}
+        <th>EMP_ID</th>
+        {% endif %}
+        <th>TASK</th>
+        <th>DUE DATE</th>
+        <th>STATUS</th>
+        <th>REMARKS</th>
+        {% if action != "no" %}
+        <th>ACTIONS</th>
+        {% endif %}
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        {% if role != "EMPLOYEE" %}
+        <th>{{task[0]}}</th>
+        {% endif %}
+        <td>{{task[2]}}</td>
+        <td>{{task[3]}}</td>
+        <td>{{task[4]}}</td>
+        <td>{{task[5]}}</td>
+        {% if action != "no" %}
+        <td>
+            <button onclick="location.href = '/update/{{task[1]}}';" type="button" class="btn btn-primary">Update</button>
+            {% if role != "ADMIN" %}
+            <button onclick="location.href = '/chat/{{task[1]}}';" type="button" class="btn btn-primary">Open chat</button>
+            {% endif %}
+            {% if role != "EMPLOYEE" %}
+            <button onclick="location.href = '/task/delete/{{task[1]}}';" type="button" class="btn btn-danger">Delete</button>
+            {% endif %}
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Chat Room{% endblock %}
+
+{% block header %}Chat{% endblock %}
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.2/socket.io.js"></script>
+<div id="chat-box">
+    {% for message in messages %}
+        <p>{{ message[2] }} :  {{ message[3] }}</p>
+    {% endfor %}
+</div>
+<input type="text" id="message-input">
+<button onclick="sendMessage()">Send</button>
+<button onclick="location.href = '/chat/clear';">Clear chat</button>
+
+<script type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    socket.on('connect', function () {
+        console.log('Connected');
+    });
+
+    socket.on('message', function (data) {
+        console.log(data)
+        addMessage((data.message));
+    });
+
+    function addMessage(message, type) {
+        var chatBox = document.getElementById('chat-box');
+        var p = document.createElement('p');
+        p.innerText =  message;
+        chatBox.appendChild(p);
+        location.reload()
+    }
+
+    function sendMessage() {
+        var inputBox = document.getElementById('message-input');
+        var message = inputBox.value;
+        inputBox.value = '';
+        socket.emit('message', {message : message });
+        //location.reload()
+        //addMessage(message, "sent");
+    }
+</script>
+
+{% endblock %}

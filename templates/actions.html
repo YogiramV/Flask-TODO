@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Action Page{% endblock %}
+
+{% block header %}Actions{% endblock %}
+
+{% block form %}
+<button onclick="location.href = '/sign-up';" id="sign-up" class="btn btn-primary" >Sign-Up</button>
+<button onclick="location.href = '/sign-in';" id="sign-in" class="btn btn-primary" >Sign-In</button>
+<button onclick="location.href = '/resetdb';" id="resetdb" class="btn btn-primary" >Reset database</button>
+{% endblock %}

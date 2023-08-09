@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Employees Page{% endblock %}
+
+{% block header %}Employees{% endblock %}
+
+{% block content %}
+<table class="table table-bordered table-dark">
+    <tr>
+        <th>NAME</th>
+        <th>AGE</th>
+        <th>USERNAME</th>
+        {% if role == "ADMIN"%}
+        <th>MANAGER</th>
+        {% endif %}
+        <th>ACTIONS</th>
+    </tr>
+    {% for employee in employees %}
+    <tr>
+        <td>{{employee[1]}}</td>
+        <td>{{employee[2]}}</td>
+        <td>{{employee[3]}}</td>
+        {% if role == "ADMIN"%}
+        <th>{{employee[6]}}</th>
+        {% endif %}
+        <td>
+            <button onclick="location.href = '/view/{{employee[0]}}';" type="button" class="btn btn-primary">View Tasks</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
+

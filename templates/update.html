@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Tasks Page{% endblock %}
+
+{% block header %}Update Task{% endblock %}
+
+{% block form %}
+<form action="/task/update/{{taskid}}" method="POST">
+    <div class="form-group">
+        <label>Task Name</label>
+        <input class="form-control" type="text" name="taskname" value={{ taskname }} {% if role == "EMPLOYEE" %} disabled="disabled" {% endif %}>
+    </div>
+
+    <div class="form-group">
+        <label>Due Date</label>
+        <input class="form-control" type="date" name="duedate" value= {{ duedate }} {% if role == "EMPLOYEE" %} disabled="disabled" {% endif %}>
+    </div>
+
+    <select name="status" class="form-select" aria-label="status">
+        <option selected>Select status</option>
+        <option value="COMPLETED">Completed</option>
+        <option value="PENDING">Pending</option>
+        <option value="IN-PROGRESS">In-progress</option>
+    </select>
+
+    {% if role != "EMPLOYEE" %} 
+    <div class="form-group">
+        <label>Remarks</label>
+        <input class="form-control" type="text" name="remarks">
+    </div>
+    {% endif %}
+
+    <button type="submit" class="btn btn-primary">Update</button>
+</form>
+{% endblock %}

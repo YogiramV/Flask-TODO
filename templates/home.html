@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block header %}Home{% endblock %}
+
+
+{% block form %}
+{% if role != "EMPLOYEE"%}
+<button onclick="location.href = '/create';" id="sign-up" class="btn btn-primary" >Create Task</button>
+<button onclick="location.href = '/employees';" id="sign-up" class="btn btn-primary" >List Employees</button>
+{% if role != "MANAGER" %}
+<button onclick="location.href = '/managers';" id="sign-up" class="btn btn-primary" >List Managers</button>
+{% endif %}
+{% endif %}
+<button onclick="location.href = '/view';" id="sign-in" class="btn btn-primary" >View Tasks</button>
+<button onclick="location.href = '/logout';" id="logout" class="btn btn-primary" >Logout</button>
+{% endblock %}

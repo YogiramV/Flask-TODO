@@ -1,0 +1,14 @@
+Employees  Manager  Admin
+
+
+
+Login page - Common
+
+
+Dashboard
+
+Employees-List of tasks, can only edit status.
+
+Manager-List of Employees, choose employee and create a task.
+
+Admin-List of Managers,List of Employees,List of tasks.
